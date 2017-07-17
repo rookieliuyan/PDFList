@@ -1,0 +1,31 @@
+html, body {
+    position: relative;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+.page-wrap {
+    position: relative;
+    width: 1100px;
+    height: 100%;
+    margin: 0 auto;
+}
+div.list {
+    height: 100%;
+    width: 200px;
+    float: left;
+}
+div.list li {
+    padding: 5px 0;
+    cursor: pointer;
+}
+div.pdf {
+    height: 100%;
+    float: left;
+    margin-left: 30px;
+}
+div.pdf > embed {
+    display: block;
+    height: 100%;
+    width: 870px;
+}
