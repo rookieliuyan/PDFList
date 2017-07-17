@@ -11,6 +11,6 @@ let pDFList = new PDFList(type, list, '', 'secondCustom')
 //     pDFList.parentListClick(this)
 // })
 
-$(document).on('click', '.secondCustom', function() {
-    pDFList.childListClick(this)
-})
+// $(document).on('click', '.secondCustom', function() {
+//     pDFList.childListClick(this)
+// })
