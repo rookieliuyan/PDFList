@@ -40,35 +40,8 @@ let PDFList = function(firstList, secondList, firstClass, secondClass) {
     createTypeList(firstList, secondList, firstClass)
 }
 
-//展开或者合拢列表
-$(document).on('click', '.type-name', function() {
-    let numTag = $(this).attr('id').replace('name', '')
-    let iL = $('#list' + numTag).attr('isList')
-    if ($('#list' + numTag).html()) {
-        if (iL == "true") {
-            $('#list' + numTag).css('display', 'none')
-            iL = false
-        } else {
-            $('#list' + numTag).css('display', 'block')
-            iL = true
-        }
-        $('#list' + numTag).attr('isList', iL)
-    } else {
-        let lN = listName[numTag]
-        if (!lN) {
-            console.log('be short of pdf name and url')
-        }
-        $('#type-list').html('')
-        let tpl = ''
-        for (let key in lN) {
-            tpl += ' <li class=' + (childClass ? childClass : "type-list-file") +' pdf-url="' + lN[key] + '">' + key + '</li>'
-        }
-        $('#list' + numTag).html('<ul>' + tpl + '</ul>').attr('isList', true)
-    }
-})
-
-PDFList.prototype.parentListClick = function(tagName) {
-    let numTag = $(tagName).attr('id').replace('name', '')
+let listOperate = (tag) => {
+    let numTag = $(tag).attr('id').replace('name', '')
     let iL = $('#list' + numTag).attr('isList')
     if ($('#list' + numTag).html()) {
         if (iL == "true") {
@@ -93,9 +66,17 @@ PDFList.prototype.parentListClick = function(tagName) {
     }
 }
 
-//显示pdf
-$(document).on('click', '.type-list-file', function() {
-    let pdfUrl = $(this).attr('pdf-url')
+//展开或者合拢列表
+$(document).on('click', '.type-name', function() {
+    listOperate(this)
+})
+
+PDFList.prototype.parentListClick = function(tagName) {
+    listOperate(tagName)
+}
+
+let pdfOperate = (tag) => {
+    let pdfUrl = $(tag).attr('pdf-url')
     let currentUrl = $('div.pdf > embed').attr('src')
     if (pdfUrl) {
         if (pdfUrl != currentUrl) {
@@ -104,16 +85,12 @@ $(document).on('click', '.type-list-file', function() {
     } else {
         console.log('the url was no found')
     }
+}
+//显示pdf
+$(document).on('click', '.type-list-file', function() {
+    pdfOperate(this)
 })
 
 PDFList.prototype.childListClick = function(tagName) {
-    let pdfUrl = $(tagName).attr('pdf-url')
-    let currentUrl = $('div.pdf > embed').attr('src')
-    if (pdfUrl) {
-        if (pdfUrl != currentUrl) {
-            $('div.pdf > embed').attr('src', pdfUrl)
-        }
-    } else {
-        console.log('the url was no found')
-    }
+    pdfOperate(tagName)
 }
