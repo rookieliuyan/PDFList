@@ -5,7 +5,7 @@ let list = [
                     {'name3.pdf1' : '../file/first-pdf.pdf', 'name3.pdf2' : '../file/second-pdf.pdf'}
                 ] //内层列表名字及连接
 
-let pDFList = new PDFList(type, list, '', 'secondCustom')
+// let pDFList = new PDFList(type, list, '', 'secondCustom')
 
 // $(document).on('click', '.firstCustom', function() {
 //     pDFList.parentListClick(this)
